@@ -16,7 +16,7 @@ Mostra o saldo atual
 
 Repete o menu até o usuário decidir sair
 
-Tecnologias
+    Tecnologias
 
 Java (JDK 8+)
 
@@ -35,7 +35,7 @@ Validação de dados (ex.: impedir saque maior que o saldo)
 
 Como fazer um programa interativo rodar várias vezes
 
-Próximos passos/ideias
+    Próximos passos/ideias
 
 Quero continuar melhorando e talvez incluir:
 
