@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.InputMismatchException;
+import java.util.ArrayList;
 
 class BankAccount {
 
@@ -34,12 +35,15 @@ class BankAccount {
     public double getBalance(){
         return balance;
     }
+    public String getAccountNumber(){
+        return accountNumber;
+    }
 }
 
 
 public class SimpleBank {
 
-    static BankAccount account = new BankAccount("João", 1000.0, "12345-6");
+    static ArrayList<BankAccount> accounts = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args){
@@ -54,37 +58,112 @@ public class SimpleBank {
             System.out.println("2 - Withdraw");
             System.out.println("3 - Show Balance");
             System.out.println("4 - Quit");
+            System.out.println("5 - Open Account");
             System.out.print("Choose one option: ");
 
             option = sc.nextInt();
 
             if (option == 1){
-                System.out.print("Enter the amount to deposit: ");
+                if (!accounts.isEmpty()) {
+                    sc.nextLine();
+                    System.out.print("Write number account: ");
+                    String account = sc.nextLine();
+                    boolean found = false;
+                    for (BankAccount BA : accounts) {
+                        if (BA.getAccountNumber().equals(account)) {
+                            found = true;
+                            System.out.print("Enter the amount to deposit: ");
+                            try {
+                                double amount = sc.nextDouble();
+                                BA.deposit(amount);
+                            } catch (InputMismatchException e) {
+                                System.out.println("Error");
+                                sc.nextLine();
+                            }
+                        }
+                    }
+                    if (!found) {
+                        System.out.println("Account not found");
+                    }
+                }
+                else {
+                    System.out.println("No account found");
+                }
+
+            }
+            else if (option == 2) {
+                if (!accounts.isEmpty()) {
+                    sc.nextLine();
+                    System.out.print("Write number account: ");
+                    String account = sc.nextLine();
+                    boolean found = false;
+                    for (BankAccount BA : accounts) {
+                        if (BA.getAccountNumber().equals(account)) {
+                            found = true;
+                            System.out.print("Enter the amount to withdraw: ");
+                            try {
+                                double amount = sc.nextDouble();
+                                BA.withdraw(amount);
+                            } catch (InputMismatchException e) {
+                                System.out.println("Error");
+                                sc.nextLine();
+                            }
+                        }
+                    }
+                    if (!found) {
+                        System.out.println("Account not found");
+                    }
+                }
+                else {
+                    System.out.println("No account found");
+                }
+            }
+            else if (option == 3) {
+                if (!accounts.isEmpty()) {
+                    sc.nextLine();
+                    System.out.print("Write number account: ");
+                    String account = sc.nextLine();
+                    boolean found = false;
+                    for (BankAccount BA : accounts) {
+                        found = true;
+                        if (BA.getAccountNumber().equals(account)) {
+                            System.out.printf("your balance is of $%.2f%n", BA.getBalance());
+                        }
+                    }
+                    if (!found) {
+                        System.out.println("Account not found");
+                    }
+                }
+                else {
+                    System.out.println("No account found");
+                }
+            }
+
+            else if (option == 4) {
+                System.out.println("Leaving... Thank you for using Simple Bank!");
+            }
+            else if (option == 5) {
                 try {
+                    sc.nextLine();
+
+                    System.out.println("Write your name: ");
+                    String name = sc.nextLine();
+
+                    System.out.println("Enter the amount to first deposit");
                     double amount = sc.nextDouble();
-                    account.deposit(amount);
+
+                    sc.nextLine();
+
+                    System.out.println("Enter a number account");
+                    String accountNumber = sc.nextLine();
+
+                    accounts.add(new BankAccount(name, amount, accountNumber));
+                    System.out.println("Account created successfully!");
                 }
                 catch (InputMismatchException e){
                     System.out.println("Error");
                     sc.nextLine();
                 }
-            }
-            else if (option == 2) {
-                System.out.print("Enter the amount to withdraw: ");
-
-                try {
-                    double amount = sc.nextDouble();
-                    account.withdraw(amount);
-                } catch (InputMismatchException e){
-                    System.out.println("Error");
-                    sc.nextLine();
-                }
-            }
-            else if (option == 3) {
-                System.out.printf("your balance is of $%.2f" , account.getBalance() );
-            }
-            else if (option == 4) {
-                System.out.println("Leaving... Thank you for using Simple Bank!");
             }
             else {
                 System.out.println("Invalid option! Please try again.");
