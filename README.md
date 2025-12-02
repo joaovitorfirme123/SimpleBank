@@ -20,7 +20,7 @@ Repete o menu até o usuário decidir sair
 
 Java (JDK 8+)
 
-VS code
+IntelliJ
 
 
     O que aprendi fazendo esse projeto
