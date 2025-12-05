@@ -1,54 +1,65 @@
-# SimpleBank 🏦
-### Um sistema bancário robusto aplicando os pilares da Orientação a Objetos em Java.
+# SimpleBank 🏦  
+### Um mini-sistema bancário desenvolvido para praticar os pilares da Orientação a Objetos em Java.
 
-Este projeto começou como um pequeno exercício de lógica e evoluiu para um sistema bancário completo. O objetivo foi refatorar um código procedural inicial para aplicar conceitos avançados de Java, como **Herança**, **Polimorfismo**, **Encapsulamento** e **Tratamento de Exceções**.
+Este projeto começou como um exercício simples e evoluiu para um sistema bancário funcional.  
+O objetivo foi sair de um código procedural e aplicar conceitos essenciais como **Herança**,  
+**Polimorfismo**, **Encapsulamento** e **Tratamento de Exceções**, criando algo mais próximo de um software real.
 
-O sistema agora permite gerenciar múltiplos clientes e diferentes tipos de contas bancárias simultaneamente.
+Hoje o sistema permite criar, buscar e operar contas bancárias de tipos diferentes.
+
+---
 
 ## 🚀 Funcionalidades
 
-- **Menu Interativo e Seguro:** Navegação protegida contra erros de digitação (letras em campos numéricos não travam o sistema).
-- **Gerenciamento de Contas:**
-  - Criação dinâmica de contas (nome, depósito inicial e número da conta).
-  - Suporte a infinitos clientes usando Listas (`ArrayList`).
-  - Busca de contas pelo número para realizar operações.
-- **Tipos de Contas (Herança):**
-  - **Conta Comum:** Depósitos, saques e consulta de saldo.
-  - **Conta Poupança:** Possui todas as funções da comum, mais a funcionalidade exclusiva de **Render Juros**.
-- **Operações Financeiras:**
-  - Depósitos e Saques com validação de saldo e valores positivos.
-  - Formatação monetária adequada (`R$`).
+- **Menu interativo com validação de entrada** (programa não quebra com inputs inválidos)
+- **Gerenciamento de contas:**
+  - Criação com nome, saldo inicial e número da conta
+  - Armazenamento dinâmico usando `ArrayList`
+  - Busca por número para operações
+- **Tipos de contas (Herança aplicada):**
+  - Conta comum: saque, depósito e saldo
+  - Conta poupança: possui todas as funções mais **aplicação de juros**
+- **Operações financeiras com validação lógica**
 
-## 🛠️ Tecnologias e Conceitos Aplicados
+---
+
+## 🛠️ Conceitos e Tecnologias Usados
 
 - **Java (JDK 8+)**
-- **POO (Programação Orientada a Objetos):**
-  - **Classes e Objetos:** Modelagem do sistema.
-  - **Encapsulamento:** Proteção do saldo com `private` e `protected`, acesso via Getters.
-  - **Herança:** Criação da `SavingAccount` herdando de `BankAccount`.
-  - **Polimorfismo:** Uso de `instanceof` e *Casting* para aplicar juros apenas em contas poupança dentro de uma lista genérica.
-- **Collections:** Uso de `ArrayList` para manipulação dinâmica de dados.
-- **Tratamento de Exceções:** Uso de blocos `try-catch` para capturar `InputMismatchException` e limpar o buffer do `Scanner`.
+- **Orientação a Objetos:**
+  - Modelagem com classes e objetos
+  - Encapsulamento do saldo e acesso seguro via getters
+  - `SavingAccount` estendendo `BankAccount`
+  - Polimorfismo com `instanceof` para aplicar juros somente quando permitido
+- **Coleções:** `ArrayList` para armazenar contas dinamicamente
+- **Exceções:** Tratamento de erros digitados pelo usuário com `try / catch`
+
+---
 
 ## 🧠 O que aprendi neste projeto
 
-Este projeto foi fundamental para solidificar meu conhecimento em Java. Saí do básico de métodos e loops para entender:
-- Como estruturar um projeto real usando Classes e Objetos.
-- A importância de proteger os dados do cliente (Encapsulamento).
-- Como evitar que o programa feche ("crashe") quando o usuário digita algo errado.
-- Como reaproveitar código criando classes filhas (Herança).
-- A lógica de manipular listas de objetos em memória.
+Este projeto solidificou vários conceitos-chave:
+
+- Estruturar um sistema com múltiplas classes
+- Criar hierarquias reutilizando código via herança
+- Proteger informações do usuário e validar entradas
+- Manipular listas de objetos em memória
+- Evitar que erros do usuário interrompam a execução
+
+---
 
 ## 🔮 Próximos Passos
 
-Apesar de funcional, o sistema sempre pode evoluir. Meus planos futuros incluem:
-- [ ] Implementar a persistência de dados (salvar as contas em arquivo ou Banco de Dados).
-- [ ] Adicionar funcionalidade de transferência entre contas.
-- [ ] Criar uma opção para remover/encerrar contas.
-- [ ] Desenvolver uma Interface Gráfica (GUI).
+Planejo evoluir o projeto com:
+
+- [ ] Persistência (salvar e carregar contas)
+- [ ] Transferência entre contas
+- [ ] Remoção / encerramento de contas
+- [ ] Interface gráfica
 
 ---
 
 ## 👨‍💻 Sobre mim
 
-Sou estudante de programação focado em aprender Java na prática. Acredito que a melhor forma de fixar o conhecimento é construindo sistemas reais e enfrentando bugs de lógica. Este projeto representa um grande salto no meu aprendizado de Orientação a Objetos.
+Sou estudante em desenvolvimento contínuo, focado em Java e Orientação a Objetos.  
+Acredito que praticar construindo aplicações reais é a melhor forma de aprender — e este projeto representa um passo importante nessa jornada.
