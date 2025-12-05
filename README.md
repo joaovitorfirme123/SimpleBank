@@ -41,8 +41,6 @@ Quero continuar melhorando e talvez incluir:
 
 Histórico de transações
 
-Cadastro de usuários/contas diferentes
-
 Interface gráfica
 
 Salvar dados em arquivo
