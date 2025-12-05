@@ -5,7 +5,7 @@ import java.util.ArrayList;
 class BankAccount {
 
     private String userName;
-    private double balance;
+    protected double balance;
     private String accountNumber;
 
     BankAccount(String name, double initialValue, String number) {
@@ -40,6 +40,20 @@ class BankAccount {
     }
 }
 
+class SavingAccount extends BankAccount{
+
+    SavingAccount(String name, double initialValue, String number){
+        super(name, initialValue, number);
+    }
+
+    public void earnInterest(){
+        double interest = balance * 0.05;
+        balance += interest;
+        System.out.printf("Interest of $%.2f applied.%n", interest);
+    }
+
+}
+
 
 public class SimpleBank {
 
@@ -59,9 +73,17 @@ public class SimpleBank {
             System.out.println("3 - Show Balance");
             System.out.println("4 - Quit");
             System.out.println("5 - Open Account");
+            System.out.println("6 - Savings Account");
+            System.out.println("7 - Apply Interest");
             System.out.print("Choose one option: ");
-
+        try {
             option = sc.nextInt();
+        } catch (InputMismatchException e){
+            option = 0;
+            sc.nextLine();
+            System.out.println("Please enter a number.");
+        }
+
 
             if (option == 1){
                 if (!accounts.isEmpty()) {
@@ -125,8 +147,8 @@ public class SimpleBank {
                     String account = sc.nextLine();
                     boolean found = false;
                     for (BankAccount BA : accounts) {
-                        found = true;
                         if (BA.getAccountNumber().equals(account)) {
+                            found = true;
                             System.out.printf("your balance is of $%.2f%n", BA.getBalance());
                         }
                     }
@@ -165,6 +187,57 @@ public class SimpleBank {
                     sc.nextLine();
                 }
             }
+            else if (option == 6) {
+                try {
+                    sc.nextLine();
+
+                    System.out.println("Write your name: ");
+                    String name = sc.nextLine();
+
+                    System.out.println("Enter the amount to first deposit");
+                    double amount = sc.nextDouble();
+
+                    sc.nextLine();
+
+                    System.out.println("Enter a number account");
+                    String accountNumber = sc.nextLine();
+
+                    accounts.add(new SavingAccount(name, amount, accountNumber));
+                    System.out.println("Account created successfully!");
+                }
+                catch (InputMismatchException e){
+                    System.out.println("Error");
+                    sc.nextLine();
+                }
+            }
+            else if (option == 7) {
+                if (!accounts.isEmpty()) {
+                    sc.nextLine();
+                    System.out.print("Write number account: ");
+                    String account = sc.nextLine();
+                    boolean found = false;
+
+                    for (BankAccount BA : accounts) {
+
+                        if (BA.getAccountNumber().equals(account)) {
+                            found = true;
+                            if (BA instanceof SavingAccount) {
+                                SavingAccount savings = (SavingAccount) BA;
+                                savings.earnInterest();
+                            }
+                            else {
+                                System.out.println("This is a standard account. Interest cannot be applied.");
+                            }
+                        }
+                    }
+                    if (!found) {
+                        System.out.println("Account not found");
+                    }
+                } else {
+                    System.out.println("No accounts registered.");
+                }
+            }
+
             else {
                 System.out.println("Invalid option! Please try again.");
             }
@@ -172,3 +245,6 @@ public class SimpleBank {
         } while (option != 4);
     }
 }
+
+
+
